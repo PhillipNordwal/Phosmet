@@ -32,3 +32,22 @@ has_exec_file() {
 		exit $err
 	fi
 }
+
+# test_fixed_arg_len tests that the first two parameters don't match and exits
+# with $3 if $3 is set, otherwise if the first two parameters don't match and
+# $3 isn't set it exits with 1
+# @param reqargs [in] required argument count
+# @param numargs [in] actual argument count
+# @param err [in] the code to exit with if the first two paramaters don't
+#   match, defaults to 1
+test_fixed_arg_len() {
+	local reqargs=$1
+	local numargs=$2
+	local err=${3:-}
+	if [ $reqargs -ne $numargs ]
+	then
+		echo "wrong number of arguments are present"
+		usage
+		exit $err
+	fi
+}

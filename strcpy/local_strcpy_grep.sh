@@ -23,12 +23,7 @@ usage() {
 	EOF
 }
 
-if [ ! 1 -eq $NUMARGS ]
-then
-	echo "wrong number of arguments are present"
-	usage && exit 2
-fi
-
+test_fixed_arg_len 1 $NUMARGS 2
 readonly ARGPATH=$1
 
 has_exec_file egrep 4
